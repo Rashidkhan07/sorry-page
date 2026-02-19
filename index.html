@@ -61,6 +61,13 @@
       position: relative;
     }
 
+    #musicBtn {
+      background: #ff85a2;
+      color: white;
+      font-size: 14px;
+      padding: 10px 15px;
+    }
+
     .hidden {
       display: none;
     }
@@ -89,6 +96,16 @@
   <div class="box">
     <h1>Hey Love ❤️</h1>
 
+    <!-- 🎵 Music Button -->
+    <button id="musicBtn" onclick="playMusic()">
+      🎶 Tap to Play Music
+    </button>
+
+    <!-- Music Audio -->
+    <audio id="bgMusic" loop>
+      <source src="song.mp3" type="audio/mpeg">
+    </audio>
+
     <!-- Tap Reveal Messages -->
     <p id="msg">I know you're angry...</p>
     <button id="tapBtn" onclick="nextMessage()">Tap Here</button>
@@ -111,6 +128,13 @@
 
 <script>
   let step = 0;
+
+  // 🎵 Play Music Function
+  function playMusic() {
+    const music = document.getElementById("bgMusic");
+    music.play();
+    document.getElementById("musicBtn").innerText = "🎶 Music Playing...";
+  }
 
   function nextMessage() {
     const msg = document.getElementById("msg");
@@ -160,3 +184,4 @@
 
 </body>
 </html>
+
