@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>I'm Sorry ❤️</title>
+
   <style>
     body {
       margin: 0;
@@ -13,46 +14,69 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      text-align: center;
       overflow: hidden;
     }
 
-    .box {
+    .card {
       background: white;
       padding: 25px;
       border-radius: 20px;
       width: 90%;
-      max-width: 400px;
-      box-shadow: 0 0 20px rgba(0,0,0,0.2);
+      max-width: 420px;
+      text-align: center;
+      box-shadow: 0 0 25px rgba(0,0,0,0.25);
     }
 
     h1 {
-      color: #ff4d6d;
+      color: #ff3b6b;
+      margin-bottom: 10px;
+    }
+
+    p {
+      font-size: 16px;
+      line-height: 1.5;
+    }
+
+    img {
+      width: 100%;
+      border-radius: 15px;
+      margin: 15px 0;
     }
 
     button {
-      margin-top: 15px;
-      padding: 12px 20px;
+      padding: 12px 18px;
+      margin: 10px;
       border: none;
       border-radius: 12px;
       font-size: 16px;
       cursor: pointer;
-      background: #ff4d6d;
-      color: white;
       transition: 0.2s;
+    }
+
+    #yesBtn {
+      background: #ff3b6b;
+      color: white;
+    }
+
+    #noBtn {
+      background: #444;
+      color: white;
+      position: relative;
     }
 
     button:hover {
       transform: scale(1.05);
     }
 
-    .hidden {
+    #finalMessage {
       display: none;
+      margin-top: 15px;
+      font-weight: bold;
+      color: #ff3b6b;
     }
 
     .heart {
       position: absolute;
-      color: red;
       font-size: 20px;
       animation: floatUp 4s linear infinite;
     }
@@ -69,59 +93,54 @@
     }
   </style>
 </head>
+
 <body>
+  <div class="card">
+    <h1>Hey My Love ❤️</h1>
 
-  <div class="box">
-    <h1>Hey Love ❤️</h1>
-    <p id="msg">I know you're angry...</p>
+    <p>
+      I know I made you upset...  
+      and I truly regret it 🥺  
+      I made this little page just for you.
+    </p>
 
-    <button onclick="nextMessage()">Tap Here</button>
+    <!-- Add your photo here -->
+    <img src="https://i.imgur.com/5QFQbYy.jpeg" alt="Us">
 
-    <p id="final" class="hidden">
-      I'm truly sorry 🥺  
-      You mean everything to me.  
-      Please forgive me ❤️
+    <p>Will you forgive me?</p>
+
+    <button id="yesBtn" onclick="forgive()">Yes ❤️</button>
+    <button id="noBtn" onmouseover="runAway()">No 😡</button>
+
+    <p id="finalMessage">
+      Yayyy 😭❤️  
+      Thank you baby.  
+      I promise I’ll do better.  
+      I love you so much.
     </p>
   </div>
 
-<script>
-  let step = 0;
-
-  function nextMessage() {
-    const msg = document.getElementById("msg");
-    const final = document.getElementById("final");
-
-    step++;
-
-    if (step === 1) {
-      msg.innerText = "I hate seeing you upset because of me...";
+  <script>
+    function forgive() {
+      document.getElementById("finalMessage").style.display = "block";
     }
-    else if (step === 2) {
-      msg.innerText = "You deserve love, not stress 😔";
-    }
-    else if (step === 3) {
-      msg.innerText = "I made this page just for you...";
-    }
-    else {
-      msg.classList.add("hidden");
-      final.classList.remove("hidden");
-    }
-  }
 
-  // Floating hearts animation
-  setInterval(() => {
-    const heart = document.createElement("div");
-    heart.className = "heart";
-    heart.innerText = "❤️";
-    heart.style.left = Math.random() * 100 + "vw";
-    heart.style.fontSize = Math.random() * 20 + 15 + "px";
-    document.body.appendChild(heart);
+    function runAway() {
+      const btn = document.getElementById("noBtn");
+      btn.style.left = Math.random() * 200 - 100 + "px";
+      btn.style.top = Math.random() * 200 - 100 + "px";
+    }
 
-    setTimeout(() => {
-      heart.remove();
-    }, 4000);
-  }, 500);
-</script>
+    // Floating hearts
+    setInterval(() => {
+      const heart = document.createElement("div");
+      heart.className = "heart";
+      heart.innerText = "❤️";
+      heart.style.left = Math.random() * 100 + "vw";
+      document.body.appendChild(heart);
 
+      setTimeout(() => heart.remove(), 4000);
+    }, 400);
+  </script>
 </body>
 </html>
