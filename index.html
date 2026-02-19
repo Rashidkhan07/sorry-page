@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>I'm Sorry ❤️</title>
 
   <style>
@@ -14,38 +14,26 @@
       display: flex;
       justify-content: center;
       align-items: center;
+      text-align: center;
       overflow: hidden;
     }
 
-    .card {
+    .box {
       background: white;
       padding: 25px;
       border-radius: 20px;
       width: 90%;
       max-width: 420px;
-      text-align: center;
-      box-shadow: 0 0 25px rgba(0,0,0,0.25);
+      box-shadow: 0 0 20px rgba(0,0,0,0.25);
     }
 
     h1 {
-      color: #ff3b6b;
-      margin-bottom: 10px;
-    }
-
-    p {
-      font-size: 16px;
-      line-height: 1.5;
-    }
-
-    img {
-      width: 100%;
-      border-radius: 15px;
-      margin: 15px 0;
+      color: #ff4d6d;
     }
 
     button {
-      padding: 12px 18px;
-      margin: 10px;
+      margin-top: 15px;
+      padding: 12px 20px;
       border: none;
       border-radius: 12px;
       font-size: 16px;
@@ -53,26 +41,28 @@
       transition: 0.2s;
     }
 
-    #yesBtn {
-      background: #ff3b6b;
-      color: white;
-    }
-
-    #noBtn {
-      background: #444;
-      color: white;
-      position: relative;
-    }
-
     button:hover {
       transform: scale(1.05);
     }
 
-    #finalMessage {
+    #tapBtn {
+      background: #ff4d6d;
+      color: white;
+    }
+
+    #yesBtn {
+      background: #ff4d6d;
+      color: white;
+    }
+
+    #noBtn {
+      background: #333;
+      color: white;
+      position: relative;
+    }
+
+    .hidden {
       display: none;
-      margin-top: 15px;
-      font-weight: bold;
-      color: #ff3b6b;
     }
 
     .heart {
@@ -95,52 +85,78 @@
 </head>
 
 <body>
-  <div class="card">
-    <h1>Hey My Love ❤️</h1>
 
-    <p>
-      I know I made you upset...  
-      and I truly regret it 🥺  
-      I made this little page just for you.
-    </p>
+  <div class="box">
+    <h1>Hey Love ❤️</h1>
 
-    <!-- Add your photo here -->
-    <img src="https://i.imgur.com/5QFQbYy.jpeg" alt="Us">
+    <!-- Tap Reveal Messages -->
+    <p id="msg">I know you're angry...</p>
+    <button id="tapBtn" onclick="nextMessage()">Tap Here</button>
 
-    <p>Will you forgive me?</p>
+    <!-- Forgive Section -->
+    <div id="forgiveSection" class="hidden">
+      <p>Will you forgive me? 🥺</p>
 
-    <button id="yesBtn" onclick="forgive()">Yes ❤️</button>
-    <button id="noBtn" onmouseover="runAway()">No 😡</button>
+      <button id="yesBtn" onclick="forgive()">Yes ❤️</button>
+      <button id="noBtn" onmouseover="runAway()">No 😡</button>
 
-    <p id="finalMessage">
-      Yayyy 😭❤️  
-      Thank you baby.  
-      I promise I’ll do better.  
-      I love you so much.
-    </p>
+      <p id="finalMessage" class="hidden">
+        Yayyy 😭❤️<br>
+        Thank you baby...<br>
+        I promise I’ll do better.<br>
+        I love you so much.
+      </p>
+    </div>
   </div>
 
-  <script>
-    function forgive() {
-      document.getElementById("finalMessage").style.display = "block";
+<script>
+  let step = 0;
+
+  function nextMessage() {
+    const msg = document.getElementById("msg");
+    const forgiveSection = document.getElementById("forgiveSection");
+    const tapBtn = document.getElementById("tapBtn");
+
+    step++;
+
+    if (step === 1) {
+      msg.innerText = "I hate seeing you upset because of me...";
     }
-
-    function runAway() {
-      const btn = document.getElementById("noBtn");
-      btn.style.left = Math.random() * 200 - 100 + "px";
-      btn.style.top = Math.random() * 200 - 100 + "px";
+    else if (step === 2) {
+      msg.innerText = "You deserve love, not stress 😔";
     }
+    else if (step === 3) {
+      msg.innerText = "I made this page just for you...";
+    }
+    else {
+      msg.innerText = "So... one last question ❤️";
+      tapBtn.classList.add("hidden");
+      forgiveSection.classList.remove("hidden");
+    }
+  }
 
-    // Floating hearts
-    setInterval(() => {
-      const heart = document.createElement("div");
-      heart.className = "heart";
-      heart.innerText = "❤️";
-      heart.style.left = Math.random() * 100 + "vw";
-      document.body.appendChild(heart);
+  function forgive() {
+    document.getElementById("finalMessage").classList.remove("hidden");
+  }
 
-      setTimeout(() => heart.remove(), 4000);
-    }, 400);
-  </script>
+  function runAway() {
+    const btn = document.getElementById("noBtn");
+    btn.style.left = Math.random() * 200 - 100 + "px";
+    btn.style.top = Math.random() * 200 - 100 + "px";
+  }
+
+  // Floating hearts animation
+  setInterval(() => {
+    const heart = document.createElement("div");
+    heart.className = "heart";
+    heart.innerText = "❤️";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.fontSize = Math.random() * 20 + 15 + "px";
+    document.body.appendChild(heart);
+
+    setTimeout(() => heart.remove(), 4000);
+  }, 400);
+</script>
+
 </body>
 </html>
